@@ -11751,19 +11751,22 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy.polynomial.polynomial</span> <span class="kn">as</span> <span class="nn">poly</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
+<span class="c1"># Read data and limit to 2015 or earlier</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">2015</span><span class="p">]</span>
 
+<span class="c1"># Take average pick value</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Avg_Pk_WS48&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Pk&#39;</span><span class="p">)[</span><span class="s1">&#39;WS/48&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 
-<span class="c1"># Curve fitting seems to do the trick, although I&#39;d like to keep pick 1 without the curve fit</span>
+<span class="c1"># Curve fitting seems to do the trick, although I&#39;d like to keep pick #1 without the curve fit</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pk&#39;</span><span class="p">]</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Avg_Pk_WS48&#39;</span><span class="p">]</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>   
@@ -11798,7 +11801,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x9b72358&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x9b95390&gt;]</pre>
 </div>
 
 </div>
@@ -12102,35 +12105,10 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>-9.86899657678e-07
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Pk&#39;</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pk&#39;</span><span class="p">]</span>
+
+<span class="c1"># Apply curve fit</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curve_Fit_Pk_WS48&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="c1"># Replace #1 </span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Pk</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Curve_Fit_Pk_WS48&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Avg_Pk_WS48&#39;</span><span class="p">]</span>
@@ -12143,14 +12121,14 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Pk&#39;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
 
+<span class="c1"># Create lists of variables and following</span>
 <span class="n">WS</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WS/48&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-
 <span class="n">cum_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1996</span><span class="p">,</span> <span class="mi">2016</span><span class="p">):</span>
     <span class="n">mini_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -12160,16 +12138,15 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 <span class="n">cum_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">cum_list</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
  
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Pk&#39;</span><span class="p">])</span>
-<span class="n">simple_transform</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))]</span>
-<span class="k">print</span> <span class="s2">&quot;Sequence:&quot;</span><span class="p">,</span> <span class="n">simple_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># for i in range(len(simple_transform)):</span>
-<span class="c1">#     simple_transform[i][ = .75</span>
+<span class="c1"># Sequence for weighing pick value. The selection is worth 1, the next pick is worth 0.75, etc.</span>
+<span class="n">simple_transform</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))]</span>
+<span class="k">print</span> <span class="s2">&quot;Weight Sequence:&quot;</span><span class="p">,</span> <span class="n">simple_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     
-<span class="c1"># print &quot;1/x slight change:&quot;, simple_transform[0]</span>
+<span class="c1"># Apply sequence</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weighted_Following_WS48&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">([</span><span class="n">y</span><span class="o">*</span><span class="n">simple_transform</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yi</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">simple_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">yi</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
                                  <span class="k">for</span> <span class="n">xi</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cum_list</span><span class="p">)]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Weighted_Following_WS48&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Pk&#39;</span><span class="p">,</span> <span class="s1">&#39;Player&#39;</span><span class="p">,</span> <span class="s1">&#39;Weighted_Following_WS48&#39;</span><span class="p">]]</span>
 </pre></div>
 
 </div>
@@ -12182,12 +12159,19 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Sequence: [1, 0.75, 0.55, 0.4, 0.25, 0.15, 0.1, 0.07, 0.05, 0.04, 0.03, 0.02, 0.01]
+<pre>Weight Sequence: [1, 0.75, 0.55, 0.4, 0.25, 0.15, 0.1, 0.07, 0.05, 0.04, 0.03, 0.02, 0.01]
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:23: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12196,1472 +12180,84 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
     <tr style="text-align: right;">
       <th></th>
       <th>Year</th>
-      <th>Url</th>
-      <th>BPM</th>
-      <th>BPM_Per_Year</th>
-      <th>MP</th>
-      <th>MPG</th>
       <th>Pk</th>
       <th>Player</th>
-      <th>Tm</th>
-      <th>VORP</th>
-      <th>...</th>
-      <th>WS_Per_Year</th>
-      <th>Yrs</th>
-      <th>Avg_Pk_WS48</th>
-      <th>Curve_Fit_Pk_WS48</th>
       <th>Weighted_Following_WS48</th>
-      <th>Sliding Scale</th>
-      <th>Sliding Scale2</th>
-      <th>Pick Value</th>
-      <th>Difference</th>
-      <th>PkDiff</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/i/...</td>
-      <td>2.7</td>
-      <td>0.192857</td>
-      <td>37584.0</td>
-      <td>41.1</td>
+      <th>10</th>
+      <td>2007</td>
       <td>1</td>
-      <td>Allen Iverson</td>
-      <td>PHI</td>
-      <td>44.1</td>
-      <td>...</td>
-      <td>7.071429</td>
-      <td>14.0</td>
-      <td>0.131250</td>
-      <td>0.131250</td>
-      <td>0.115365</td>
-      <td>0.500000</td>
-      <td>0.500000</td>
-      <td>0.123308</td>
-      <td>0.002692</td>
-      <td>0.014292</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/c/...</td>
-      <td>2.9</td>
-      <td>0.170588</td>
-      <td>28684.0</td>
-      <td>29.5</td>
-      <td>2</td>
-      <td>Marcus Camby</td>
-      <td>TOR</td>
-      <td>35.6</td>
-      <td>...</td>
-      <td>4.800000</td>
-      <td>17.0</td>
-      <td>0.095900</td>
-      <td>0.107806</td>
-      <td>0.113713</td>
-      <td>0.508475</td>
-      <td>0.491525</td>
-      <td>0.110709</td>
-      <td>0.026291</td>
-      <td>-0.004305</td>
-    </tr>
-    <tr>
-      <th>59</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/a/...</td>
-      <td>0.9</td>
-      <td>0.075000</td>
-      <td>28882.0</td>
-      <td>34.8</td>
-      <td>3</td>
-      <td>Shareef Abdur-Rahim</td>
-      <td>VAN</td>
-      <td>21.1</td>
-      <td>...</td>
-      <td>5.933333</td>
-      <td>12.0</td>
-      <td>0.112050</td>
-      <td>0.104228</td>
-      <td>0.105015</td>
-      <td>0.516949</td>
-      <td>0.483051</td>
-      <td>0.104608</td>
-      <td>0.013392</td>
-      <td>0.013206</td>
-    </tr>
-    <tr>
-      <th>79</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>1.2</td>
-      <td>0.092308</td>
-      <td>31891.0</td>
-      <td>37.7</td>
-      <td>4</td>
-      <td>Stephon Marbury</td>
-      <td>MIN</td>
-      <td>25.6</td>
-      <td>...</td>
-      <td>5.961538</td>
-      <td>13.0</td>
-      <td>0.107400</td>
-      <td>0.100828</td>
-      <td>0.101930</td>
-      <td>0.525424</td>
-      <td>0.474576</td>
-      <td>0.101351</td>
-      <td>0.015649</td>
-      <td>0.013107</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/a/...</td>
-      <td>3.0</td>
-      <td>0.166667</td>
-      <td>46344.0</td>
-      <td>35.6</td>
-      <td>5</td>
-      <td>Ray Allen</td>
-      <td>MIL</td>
-      <td>58.1</td>
-      <td>...</td>
-      <td>8.061111</td>
-      <td>18.0</td>
-      <td>0.090700</td>
-      <td>0.097601</td>
-      <td>0.096447</td>
-      <td>0.533898</td>
-      <td>0.466102</td>
-      <td>0.097063</td>
-      <td>0.052937</td>
-      <td>0.001011</td>
-    </tr>
-    <tr>
-      <th>101</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/w/...</td>
-      <td>0.8</td>
-      <td>0.066667</td>
-      <td>31531.0</td>
-      <td>35.3</td>
-      <td>6</td>
-      <td>Antoine Walker</td>
-      <td>BOS</td>
-      <td>21.9</td>
-      <td>...</td>
-      <td>3.175000</td>
-      <td>12.0</td>
-      <td>0.081800</td>
-      <td>0.094540</td>
-      <td>0.076462</td>
-      <td>0.542373</td>
-      <td>0.457627</td>
-      <td>0.086267</td>
-      <td>-0.028267</td>
-      <td>-0.005447</td>
-    </tr>
-    <tr>
-      <th>135</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/w/...</td>
-      <td>-2.0</td>
-      <td>-0.153846</td>
-      <td>18535.0</td>
-      <td>23.8</td>
-      <td>7</td>
-      <td>Lorenzen Wright</td>
-      <td>LAC</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>2.346154</td>
-      <td>13.0</td>
-      <td>0.084100</td>
-      <td>0.091640</td>
-      <td>0.088319</td>
-      <td>0.550847</td>
-      <td>0.449153</td>
-      <td>0.090148</td>
-      <td>-0.011148</td>
-      <td>-0.001991</td>
-    </tr>
-    <tr>
-      <th>158</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/k/...</td>
-      <td>1.9</td>
-      <td>0.237500</td>
-      <td>16929.0</td>
-      <td>33.4</td>
-      <td>8</td>
-      <td>Kerry Kittles</td>
-      <td>BRK</td>
-      <td>16.9</td>
-      <td>...</td>
-      <td>5.600000</td>
-      <td>8.0</td>
-      <td>0.074550</td>
-      <td>0.088895</td>
-      <td>0.094766</td>
-      <td>0.559322</td>
-      <td>0.440678</td>
-      <td>0.091482</td>
-      <td>0.035518</td>
-      <td>-0.009861</td>
-    </tr>
-    <tr>
-      <th>162</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/w/...</td>
-      <td>-3.0</td>
-      <td>-0.300000</td>
-      <td>7612.0</td>
-      <td>17.1</td>
-      <td>9</td>
-      <td>Samaki Walker</td>
-      <td>DAL</td>
-      <td>-1.8</td>
-      <td>...</td>
-      <td>1.420000</td>
-      <td>10.0</td>
-      <td>0.109300</td>
-      <td>0.086298</td>
-      <td>0.086798</td>
-      <td>0.567797</td>
-      <td>0.432203</td>
-      <td>0.086514</td>
-      <td>0.002486</td>
-      <td>0.024912</td>
-    </tr>
-    <tr>
-      <th>180</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/d/...</td>
-      <td>0.2</td>
-      <td>0.012500</td>
-      <td>24003.0</td>
-      <td>24.3</td>
-      <td>10</td>
-      <td>Erick Dampier</td>
-      <td>IND</td>
-      <td>13.1</td>
-      <td>...</td>
-      <td>3.293750</td>
-      <td>16.0</td>
-      <td>0.086500</td>
-      <td>0.083844</td>
-      <td>0.090146</td>
-      <td>0.576271</td>
-      <td>0.423729</td>
-      <td>0.086515</td>
-      <td>0.018485</td>
-      <td>0.007602</td>
-    </tr>
-    <tr>
-      <th>216</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/f/...</td>
-      <td>-7.1</td>
-      <td>-1.420000</td>
-      <td>2500.0</td>
-      <td>11.1</td>
-      <td>11</td>
-      <td>Todd Fuller</td>
-      <td>GSW</td>
-      <td>-3.2</td>
-      <td>...</td>
-      <td>0.440000</td>
-      <td>5.0</td>
-      <td>0.073150</td>
-      <td>0.081527</td>
-      <td>0.089444</td>
-      <td>0.584746</td>
-      <td>0.415254</td>
-      <td>0.084815</td>
-      <td>-0.043815</td>
-      <td>-0.002776</td>
-    </tr>
-    <tr>
-      <th>239</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/p/...</td>
-      <td>-3.5</td>
-      <td>-0.318182</td>
-      <td>11608.0</td>
-      <td>19.0</td>
-      <td>12</td>
-      <td>Vitaly Potapenko</td>
-      <td>CLE</td>
-      <td>-4.4</td>
-      <td>...</td>
-      <td>1.409091</td>
-      <td>11.0</td>
-      <td>0.066300</td>
-      <td>0.079342</td>
-      <td>0.111213</td>
-      <td>0.593220</td>
-      <td>0.406780</td>
-      <td>0.092306</td>
-      <td>-0.028306</td>
-      <td>-0.008359</td>
-    </tr>
-    <tr>
-      <th>246</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/b/...</td>
-      <td>3.9</td>
-      <td>0.195000</td>
-      <td>48637.0</td>
-      <td>36.1</td>
-      <td>13</td>
-      <td>Kobe Bryant</td>
-      <td>LAL</td>
-      <td>72.1</td>
-      <td>...</td>
-      <td>8.635000</td>
-      <td>20.0</td>
-      <td>0.082000</td>
-      <td>0.077281</td>
-      <td>0.130219</td>
-      <td>0.601695</td>
-      <td>0.398305</td>
-      <td>0.098366</td>
-      <td>0.071634</td>
-      <td>0.007656</td>
-    </tr>
-    <tr>
-      <th>263</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/s/...</td>
-      <td>1.5</td>
-      <td>0.115385</td>
-      <td>26966.0</td>
-      <td>33.5</td>
-      <td>14</td>
-      <td>Peja Stojakovic</td>
-      <td>SAC</td>
-      <td>23.9</td>
-      <td>...</td>
-      <td>6.353846</td>
-      <td>13.0</td>
-      <td>0.069900</td>
-      <td>0.075339</td>
-      <td>0.115906</td>
-      <td>0.610169</td>
-      <td>0.389831</td>
-      <td>0.091153</td>
-      <td>0.055847</td>
-      <td>-0.002006</td>
-    </tr>
-    <tr>
-      <th>280</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/n/...</td>
-      <td>1.3</td>
-      <td>0.072222</td>
-      <td>38069.0</td>
-      <td>31.3</td>
-      <td>15</td>
-      <td>Steve Nash</td>
-      <td>PHO</td>
-      <td>31.2</td>
-      <td>...</td>
-      <td>7.205556</td>
-      <td>18.0</td>
-      <td>0.080526</td>
-      <td>0.073511</td>
-      <td>0.100775</td>
-      <td>0.618644</td>
-      <td>0.381356</td>
-      <td>0.083908</td>
-      <td>0.080092</td>
-      <td>0.009742</td>
-    </tr>
-    <tr>
-      <th>318</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/d/...</td>
-      <td>-1.3</td>
-      <td>-0.130000</td>
-      <td>11702.0</td>
-      <td>21.5</td>
-      <td>16</td>
-      <td>Tony Delk</td>
-      <td>CHA</td>
-      <td>2.1</td>
-      <td>...</td>
-      <td>1.950000</td>
-      <td>10.0</td>
-      <td>0.067100</td>
-      <td>0.071789</td>
-      <td>0.075541</td>
-      <td>0.627119</td>
-      <td>0.372881</td>
-      <td>0.073188</td>
-      <td>0.006812</td>
-      <td>-0.001248</td>
-    </tr>
-    <tr>
-      <th>337</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/o/...</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>27364.0</td>
-      <td>27.1</td>
-      <td>17</td>
-      <td>Jermaine O'Neal</td>
-      <td>POR</td>
-      <td>13.9</td>
-      <td>...</td>
-      <td>3.666667</td>
-      <td>18.0</td>
-      <td>0.064150</td>
-      <td>0.070170</td>
-      <td>0.072968</td>
-      <td>0.635593</td>
-      <td>0.364407</td>
-      <td>0.071189</td>
-      <td>0.044811</td>
-      <td>-0.003189</td>
-    </tr>
-    <tr>
-      <th>346</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/w/...</td>
-      <td>-4.5</td>
-      <td>-0.642857</td>
-      <td>6143.0</td>
-      <td>16.1</td>
-      <td>18</td>
-      <td>John Wallace</td>
-      <td>NYK</td>
-      <td>-3.8</td>
-      <td>...</td>
-      <td>0.914286</td>
-      <td>7.0</td>
-      <td>0.073650</td>
-      <td>0.068645</td>
-      <td>0.056228</td>
-      <td>0.644068</td>
-      <td>0.355932</td>
-      <td>0.064226</td>
-      <td>-0.014226</td>
-      <td>0.006926</td>
-    </tr>
-    <tr>
-      <th>361</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>-1.4</td>
-      <td>-0.140000</td>
-      <td>10374.0</td>
-      <td>17.5</td>
-      <td>19</td>
-      <td>Walter McCarty</td>
-      <td>NYK</td>
-      <td>1.7</td>
-      <td>...</td>
-      <td>1.370000</td>
-      <td>10.0</td>
-      <td>0.066950</td>
-      <td>0.067210</td>
-      <td>0.060205</td>
-      <td>0.652542</td>
-      <td>0.347458</td>
-      <td>0.064776</td>
-      <td>-0.000776</td>
-      <td>0.002033</td>
-    </tr>
-    <tr>
-      <th>394</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/i/...</td>
-      <td>0.3</td>
-      <td>0.023077</td>
-      <td>22965.0</td>
-      <td>27.2</td>
-      <td>20</td>
-      <td>Zydrunas Ilgauskas</td>
-      <td>CLE</td>
-      <td>13.0</td>
-      <td>...</td>
-      <td>5.100000</td>
-      <td>13.0</td>
-      <td>0.061200</td>
-      <td>0.065859</td>
-      <td>0.061491</td>
-      <td>0.661017</td>
-      <td>0.338983</td>
-      <td>0.064379</td>
-      <td>0.074621</td>
-      <td>-0.002742</td>
-    </tr>
-    <tr>
-      <th>414</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/j/...</td>
-      <td>-11.8</td>
-      <td>-11.800000</td>
-      <td>91.0</td>
-      <td>6.1</td>
-      <td>21</td>
-      <td>Dontae' Jones</td>
-      <td>BOS</td>
-      <td>-0.2</td>
-      <td>...</td>
-      <td>-0.300000</td>
-      <td>1.0</td>
-      <td>0.067450</td>
-      <td>0.064586</td>
-      <td>0.034123</td>
-      <td>0.669492</td>
-      <td>0.330508</td>
-      <td>0.054518</td>
-      <td>-0.054518</td>
-      <td>0.003821</td>
-    </tr>
-    <tr>
-      <th>435</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/r/...</td>
-      <td>-3.3</td>
-      <td>-1.100000</td>
-      <td>2309.0</td>
-      <td>16.9</td>
-      <td>22</td>
-      <td>Roy Rogers</td>
-      <td>VAN</td>
-      <td>-0.7</td>
-      <td>...</td>
-      <td>0.566667</td>
-      <td>3.0</td>
-      <td>0.060400</td>
-      <td>0.063384</td>
-      <td>0.048187</td>
-      <td>0.677966</td>
-      <td>0.322034</td>
-      <td>0.058490</td>
-      <td>-0.023490</td>
-      <td>-0.002068</td>
-    </tr>
-    <tr>
-      <th>457</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/r/...</td>
-      <td>-4.7</td>
-      <td>-4.700000</td>
-      <td>144.0</td>
-      <td>4.1</td>
-      <td>23</td>
-      <td>Efthimi Rentzias</td>
-      <td>PHI</td>
-      <td>-0.1</td>
-      <td>...</td>
-      <td>0.200000</td>
-      <td>1.0</td>
-      <td>0.068050</td>
-      <td>0.062248</td>
-      <td>0.057500</td>
-      <td>0.686441</td>
-      <td>0.313559</td>
-      <td>0.060759</td>
-      <td>-0.060759</td>
-      <td>0.005828</td>
-    </tr>
-    <tr>
-      <th>459</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/f/...</td>
-      <td>-0.9</td>
-      <td>-0.050000</td>
-      <td>32719.0</td>
-      <td>25.4</td>
-      <td>24</td>
-      <td>Derek Fisher</td>
-      <td>LAL</td>
-      <td>9.3</td>
-      <td>...</td>
-      <td>3.461111</td>
-      <td>18.0</td>
-      <td>0.064950</td>
-      <td>0.061172</td>
-      <td>0.080994</td>
-      <td>0.694915</td>
-      <td>0.305085</td>
-      <td>0.067220</td>
-      <td>0.023780</td>
-      <td>0.003780</td>
-    </tr>
-    <tr>
-      <th>487</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>-1.2</td>
-      <td>-0.600000</td>
-      <td>951.0</td>
-      <td>11.5</td>
-      <td>25</td>
-      <td>Martin Muursepp</td>
-      <td>MIA</td>
-      <td>0.2</td>
-      <td>...</td>
-      <td>1.000000</td>
-      <td>2.0</td>
-      <td>0.064250</td>
-      <td>0.060150</td>
-      <td>0.075702</td>
-      <td>0.703390</td>
-      <td>0.296610</td>
-      <td>0.064763</td>
-      <td>0.035237</td>
-      <td>0.004030</td>
-    </tr>
-    <tr>
-      <th>499</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/w/...</td>
-      <td>0.8</td>
-      <td>0.088889</td>
-      <td>12755.0</td>
-      <td>21.7</td>
-      <td>26</td>
-      <td>Jerome Williams</td>
-      <td>DET</td>
-      <td>9.0</td>
-      <td>...</td>
-      <td>4.211111</td>
-      <td>9.0</td>
-      <td>0.077900</td>
-      <td>0.059177</td>
-      <td>0.065073</td>
-      <td>0.711864</td>
-      <td>0.288136</td>
-      <td>0.060876</td>
-      <td>0.082124</td>
-      <td>0.018586</td>
-    </tr>
-    <tr>
-      <th>523</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/e/...</td>
-      <td>-2.2</td>
-      <td>-0.733333</td>
-      <td>1097.0</td>
-      <td>10.8</td>
-      <td>27</td>
-      <td>Brian Evans</td>
-      <td>ORL</td>
-      <td>-0.1</td>
-      <td>...</td>
-      <td>0.566667</td>
-      <td>3.0</td>
-      <td>0.070800</td>
-      <td>0.058245</td>
-      <td>0.035439</td>
-      <td>0.720339</td>
-      <td>0.279661</td>
-      <td>0.051867</td>
-      <td>0.024133</td>
-      <td>0.013833</td>
-    </tr>
-    <tr>
-      <th>556</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/l/...</td>
-      <td>-8.0</td>
-      <td>-4.000000</td>
-      <td>525.0</td>
-      <td>7.1</td>
-      <td>28</td>
-      <td>Priest Lauderdale</td>
-      <td>ATL</td>
-      <td>-0.8</td>
-      <td>...</td>
-      <td>-0.400000</td>
-      <td>2.0</td>
-      <td>0.040850</td>
-      <td>0.057350</td>
-      <td>0.022076</td>
-      <td>0.728814</td>
-      <td>0.271186</td>
-      <td>0.047784</td>
-      <td>-0.121784</td>
-      <td>-0.013941</td>
-    </tr>
-    <tr>
-      <th>566</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/k/...</td>
-      <td>-1.3</td>
-      <td>-0.185714</td>
-      <td>4566.0</td>
-      <td>12.3</td>
-      <td>29</td>
-      <td>Travis Knight</td>
-      <td>LAL</td>
-      <td>0.8</td>
-      <td>...</td>
-      <td>1.128571</td>
-      <td>7.0</td>
-      <td>0.054294</td>
-      <td>0.056485</td>
-      <td>0.061170</td>
-      <td>0.737288</td>
-      <td>0.262712</td>
-      <td>0.057715</td>
-      <td>0.025285</td>
-      <td>-0.001523</td>
-    </tr>
-    <tr>
-      <th>578</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/h/...</td>
-      <td>-3.1</td>
-      <td>-0.258333</td>
-      <td>13924.0</td>
-      <td>19.6</td>
-      <td>30</td>
-      <td>Othella Harrington</td>
-      <td>HOU</td>
-      <td>-4.0</td>
-      <td>...</td>
-      <td>1.925000</td>
-      <td>12.0</td>
-      <td>0.066556</td>
-      <td>0.055644</td>
-      <td>0.051930</td>
-      <td>0.745763</td>
-      <td>0.254237</td>
-      <td>0.054700</td>
-      <td>0.025300</td>
-      <td>0.011322</td>
-    </tr>
-    <tr>
-      <th>597</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/h/...</td>
-      <td>-4.1</td>
-      <td>-1.025000</td>
-      <td>1508.0</td>
-      <td>13.2</td>
-      <td>31</td>
-      <td>Mark Hendrickson</td>
-      <td>PHI</td>
-      <td>-0.8</td>
-      <td>...</td>
-      <td>0.525000</td>
-      <td>4.0</td>
-      <td>0.062421</td>
-      <td>0.054822</td>
-      <td>0.041374</td>
-      <td>0.754237</td>
-      <td>0.245763</td>
-      <td>0.051517</td>
-      <td>0.015483</td>
-      <td>0.009149</td>
-    </tr>
-    <tr>
-      <th>618</th>
-      <td>1996</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>32</td>
-      <td>Ryan Minor</td>
-      <td>PHI</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.042050</td>
-      <td>0.054012</td>
-      <td>0.030497</td>
-      <td>0.762712</td>
-      <td>0.237288</td>
-      <td>0.048432</td>
-      <td>-0.048432</td>
-      <td>-0.009772</td>
-    </tr>
-    <tr>
-      <th>647</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/n/...</td>
-      <td>-2.1</td>
-      <td>-0.233333</td>
-      <td>7640.0</td>
-      <td>17.2</td>
-      <td>33</td>
-      <td>Moochie Norris</td>
-      <td>VAN</td>
-      <td>-0.1</td>
-      <td>...</td>
-      <td>1.111111</td>
-      <td>9.0</td>
-      <td>0.054100</td>
-      <td>0.053209</td>
-      <td>0.044532</td>
-      <td>0.771186</td>
-      <td>0.228814</td>
-      <td>0.051224</td>
-      <td>0.011776</td>
-      <td>0.002324</td>
-    </tr>
-    <tr>
-      <th>719</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>-2.6</td>
-      <td>-0.236364</td>
-      <td>15927.0</td>
-      <td>27.7</td>
-      <td>37</td>
-      <td>Jeff McInnis</td>
-      <td>DEN</td>
-      <td>-2.5</td>
-      <td>...</td>
-      <td>2.100000</td>
-      <td>11.0</td>
-      <td>0.050600</td>
-      <td>0.049945</td>
-      <td>0.038158</td>
-      <td>0.805085</td>
-      <td>0.194915</td>
-      <td>0.047648</td>
-      <td>0.022352</td>
-      <td>0.001832</td>
-    </tr>
-    <tr>
-      <th>730</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/h/...</td>
-      <td>-7.5</td>
-      <td>-7.500000</td>
-      <td>268.0</td>
-      <td>7.7</td>
-      <td>38</td>
-      <td>Steve Hamer</td>
-      <td>BOS</td>
-      <td>-0.4</td>
-      <td>...</td>
-      <td>0.200000</td>
-      <td>1.0</td>
-      <td>0.050050</td>
-      <td>0.049086</td>
-      <td>0.028158</td>
-      <td>0.813559</td>
-      <td>0.186441</td>
-      <td>0.045185</td>
-      <td>-0.014185</td>
-      <td>0.002176</td>
-    </tr>
-    <tr>
-      <th>782</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/s/...</td>
-      <td>-7.0</td>
-      <td>-3.500000</td>
-      <td>108.0</td>
-      <td>7.7</td>
-      <td>41</td>
-      <td>Jason Sasser</td>
-      <td>SAS</td>
-      <td>-0.1</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>2.0</td>
-      <td>0.037333</td>
-      <td>0.046314</td>
-      <td>0.029620</td>
-      <td>0.838983</td>
-      <td>0.161017</td>
-      <td>0.043626</td>
-      <td>-0.043626</td>
-      <td>-0.008008</td>
-    </tr>
-    <tr>
-      <th>810</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/l/...</td>
-      <td>-3.7</td>
-      <td>-0.336364</td>
-      <td>2684.0</td>
-      <td>13.2</td>
-      <td>42</td>
-      <td>Randy Livingston</td>
-      <td>HOU</td>
-      <td>-1.2</td>
-      <td>...</td>
-      <td>0.209091</td>
-      <td>11.0</td>
-      <td>0.041778</td>
-      <td>0.045304</td>
-      <td>0.042602</td>
-      <td>0.847458</td>
-      <td>0.152542</td>
-      <td>0.044892</td>
-      <td>-0.003892</td>
-      <td>-0.003286</td>
-    </tr>
-    <tr>
-      <th>829</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/d/...</td>
-      <td>-6.0</td>
-      <td>-1.500000</td>
-      <td>154.0</td>
-      <td>3.9</td>
-      <td>43</td>
-      <td>Ben Davis</td>
-      <td>PHO</td>
-      <td>-0.2</td>
-      <td>...</td>
-      <td>0.025000</td>
-      <td>4.0</td>
-      <td>0.037875</td>
-      <td>0.044242</td>
-      <td>0.044825</td>
-      <td>0.855932</td>
-      <td>0.144068</td>
-      <td>0.044326</td>
-      <td>-0.044326</td>
-      <td>-0.006305</td>
-    </tr>
-    <tr>
-      <th>847</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/r/...</td>
-      <td>-1.4</td>
-      <td>-0.107692</td>
-      <td>13404.0</td>
-      <td>16.5</td>
-      <td>44</td>
-      <td>Malik Rose</td>
-      <td>CHA</td>
-      <td>1.9</td>
-      <td>...</td>
-      <td>2.038462</td>
-      <td>13.0</td>
-      <td>0.058000</td>
-      <td>0.043121</td>
-      <td>0.061140</td>
-      <td>0.864407</td>
-      <td>0.135593</td>
-      <td>0.045564</td>
-      <td>0.049436</td>
-      <td>0.014256</td>
-    </tr>
-    <tr>
-      <th>874</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/b/...</td>
-      <td>-3.2</td>
-      <td>-1.600000</td>
-      <td>229.0</td>
-      <td>8.5</td>
-      <td>46</td>
-      <td>Marcus Brown</td>
-      <td>POR</td>
-      <td>-0.1</td>
-      <td>...</td>
-      <td>0.150000</td>
-      <td>2.0</td>
-      <td>0.039824</td>
-      <td>0.040680</td>
-      <td>0.047617</td>
-      <td>0.881356</td>
-      <td>0.118644</td>
-      <td>0.041503</td>
-      <td>0.024497</td>
-      <td>0.000064</td>
-    </tr>
-    <tr>
-      <th>899</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/f/...</td>
-      <td>-1.7</td>
-      <td>-0.340000</td>
-      <td>4316.0</td>
-      <td>21.5</td>
-      <td>48</td>
-      <td>Jamie Feick</td>
-      <td>CHA</td>
-      <td>0.4</td>
-      <td>...</td>
-      <td>1.640000</td>
-      <td>5.0</td>
-      <td>0.032529</td>
-      <td>0.037934</td>
-      <td>0.039883</td>
-      <td>0.898305</td>
-      <td>0.101695</td>
-      <td>0.038133</td>
-      <td>0.052867</td>
-      <td>-0.004449</td>
-    </tr>
-    <tr>
-      <th>921</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>-4.4</td>
-      <td>-1.100000</td>
-      <td>968.0</td>
-      <td>8.5</td>
-      <td>49</td>
-      <td>Amal McCaskill</td>
-      <td>ORL</td>
-      <td>-0.6</td>
-      <td>...</td>
-      <td>0.125000</td>
-      <td>4.0</td>
-      <td>0.026353</td>
-      <td>0.036432</td>
-      <td>0.020556</td>
-      <td>0.906780</td>
-      <td>0.093220</td>
-      <td>0.034952</td>
-      <td>-0.010952</td>
-      <td>-0.008861</td>
-    </tr>
-    <tr>
-      <th>957</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/r/...</td>
-      <td>-4.1</td>
-      <td>-2.050000</td>
-      <td>1095.0</td>
-      <td>14.4</td>
-      <td>51</td>
-      <td>Chris Robinson</td>
-      <td>VAN</td>
-      <td>-0.6</td>
-      <td>...</td>
-      <td>-0.050000</td>
-      <td>2.0</td>
-      <td>0.020500</td>
-      <td>0.033140</td>
-      <td>0.020336</td>
-      <td>0.923729</td>
-      <td>0.076271</td>
-      <td>0.032164</td>
-      <td>-0.035164</td>
-      <td>-0.011275</td>
-    </tr>
-    <tr>
-      <th>968</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/p/...</td>
-      <td>-3.2</td>
-      <td>-0.533333</td>
-      <td>1634.0</td>
-      <td>10.7</td>
-      <td>52</td>
-      <td>Mark Pope</td>
-      <td>IND</td>
-      <td>-0.5</td>
-      <td>...</td>
-      <td>0.216667</td>
-      <td>6.0</td>
-      <td>0.016786</td>
-      <td>0.031338</td>
-      <td>0.030000</td>
-      <td>0.932203</td>
-      <td>0.067797</td>
-      <td>0.031248</td>
-      <td>0.006752</td>
-      <td>-0.013804</td>
-    </tr>
-    <tr>
-      <th>983</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/n/...</td>
-      <td>-6.8</td>
-      <td>-6.800000</td>
-      <td>48.0</td>
-      <td>3.7</td>
-      <td>53</td>
-      <td>Jeff Nordgaard</td>
-      <td>MIL</td>
-      <td>-0.1</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>0.024944</td>
-      <td>0.029425</td>
-      <td>0.026681</td>
-      <td>0.940678</td>
-      <td>0.059322</td>
-      <td>0.029262</td>
-      <td>-0.029262</td>
-      <td>-0.003966</td>
-    </tr>
-    <tr>
-      <th>1008</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/a/...</td>
-      <td>-0.8</td>
-      <td>-0.080000</td>
-      <td>15946.0</td>
-      <td>22.2</td>
-      <td>54</td>
-      <td>Shandon Anderson</td>
-      <td>UTA</td>
-      <td>4.9</td>
-      <td>...</td>
-      <td>2.360000</td>
-      <td>10.0</td>
-      <td>0.011000</td>
-      <td>0.027393</td>
-      <td>0.035980</td>
-      <td>0.949153</td>
-      <td>0.050847</td>
-      <td>0.027830</td>
-      <td>0.043170</td>
-      <td>-0.015906</td>
-    </tr>
-    <tr>
-      <th>1029</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/g/...</td>
-      <td>-3.2</td>
-      <td>-1.600000</td>
-      <td>931.0</td>
-      <td>9.2</td>
-      <td>56</td>
-      <td>Reggie Geary</td>
-      <td>CLE</td>
-      <td>-0.3</td>
-      <td>...</td>
-      <td>0.300000</td>
-      <td>2.0</td>
-      <td>0.021812</td>
-      <td>0.022954</td>
-      <td>0.020541</td>
-      <td>0.966102</td>
-      <td>0.033898</td>
-      <td>0.022872</td>
-      <td>0.009128</td>
-      <td>-0.000938</td>
-    </tr>
-    <tr>
-      <th>1051</th>
-      <td>1996</td>
-      <td>http://www.basketball-reference.com/players/b/...</td>
-      <td>-4.5</td>
-      <td>-1.500000</td>
-      <td>598.0</td>
-      <td>10.0</td>
-      <td>57</td>
-      <td>Drew Barry</td>
-      <td>ATL</td>
-      <td>-0.4</td>
-      <td>...</td>
-      <td>0.200000</td>
-      <td>3.0</td>
-      <td>0.028214</td>
-      <td>0.020533</td>
-      <td>0.014912</td>
-      <td>0.974576</td>
-      <td>0.025424</td>
-      <td>0.020391</td>
-      <td>0.030609</td>
-      <td>0.007852</td>
+      <td>Greg Oden</td>
+      <td>0.147412</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1997</td>
-      <td>http://www.basketball-reference.com/players/d/...</td>
-      <td>5.5</td>
-      <td>0.289474</td>
-      <td>47368.0</td>
-      <td>34.0</td>
       <td>1</td>
       <td>Tim Duncan</td>
-      <td>SAS</td>
-      <td>89.3</td>
-      <td>...</td>
-      <td>10.863158</td>
-      <td>19.0</td>
-      <td>0.131250</td>
-      <td>0.131250</td>
       <td>0.138026</td>
-      <td>0.500000</td>
-      <td>0.500000</td>
-      <td>0.134638</td>
-      <td>0.074362</td>
-      <td>0.014292</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/v/...</td>
-      <td>-0.2</td>
-      <td>-0.022222</td>
-      <td>18150.0</td>
-      <td>31.6</td>
+      <th>39</th>
+      <td>2007</td>
       <td>2</td>
-      <td>Keith Van Horn</td>
-      <td>BRK</td>
-      <td>8.4</td>
-      <td>...</td>
-      <td>4.633333</td>
-      <td>9.0</td>
-      <td>0.095900</td>
-      <td>0.107806</td>
-      <td>0.108801</td>
-      <td>0.508475</td>
-      <td>0.491525</td>
-      <td>0.108295</td>
-      <td>0.001705</td>
-      <td>-0.004305</td>
+      <td>Kevin Durant</td>
+      <td>0.137471</td>
     </tr>
     <tr>
-      <th>44</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/b/...</td>
-      <td>2.5</td>
-      <td>0.147059</td>
-      <td>33008.0</td>
-      <td>31.6</td>
-      <td>3</td>
-      <td>Chauncey Billups</td>
-      <td>BOS</td>
-      <td>37.6</td>
-      <td>...</td>
-      <td>7.105882</td>
-      <td>17.0</td>
-      <td>0.112050</td>
-      <td>0.104228</td>
-      <td>0.109825</td>
-      <td>0.516949</td>
-      <td>0.483051</td>
-      <td>0.106931</td>
-      <td>0.069069</td>
-      <td>0.013206</td>
+      <th>14</th>
+      <td>2003</td>
+      <td>1</td>
+      <td>LeBron James</td>
+      <td>0.136550</td>
     </tr>
     <tr>
-      <th>73</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/d/...</td>
-      <td>-1.2</td>
-      <td>-0.092308</td>
-      <td>19671.0</td>
-      <td>22.6</td>
+      <th>257</th>
+      <td>1996</td>
+      <td>13</td>
+      <td>Kobe Bryant</td>
+      <td>0.130219</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>2008</td>
       <td>4</td>
-      <td>Antonio Daniels</td>
-      <td>VAN</td>
-      <td>4.1</td>
-      <td>...</td>
-      <td>3.615385</td>
-      <td>13.0</td>
-      <td>0.107400</td>
-      <td>0.100828</td>
-      <td>0.085292</td>
-      <td>0.525424</td>
-      <td>0.474576</td>
-      <td>0.093455</td>
-      <td>0.021545</td>
-      <td>0.013107</td>
+      <td>Russell Westbrook</td>
+      <td>0.130161</td>
     </tr>
     <tr>
-      <th>97</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/b/...</td>
-      <td>-1.6</td>
-      <td>-0.114286</td>
-      <td>17649.0</td>
-      <td>21.1</td>
-      <td>5</td>
-      <td>Tony Battie</td>
-      <td>DEN</td>
-      <td>1.9</td>
-      <td>...</td>
-      <td>2.600000</td>
-      <td>14.0</td>
-      <td>0.090700</td>
-      <td>0.097601</td>
-      <td>0.074620</td>
-      <td>0.533898</td>
-      <td>0.466102</td>
-      <td>0.086889</td>
-      <td>0.012111</td>
-      <td>0.001011</td>
+      <th>12</th>
+      <td>2009</td>
+      <td>1</td>
+      <td>Blake Griffin</td>
+      <td>0.130015</td>
     </tr>
     <tr>
-      <th>108</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>-3.3</td>
-      <td>-0.412500</td>
-      <td>13418.0</td>
-      <td>31.1</td>
-      <td>6</td>
-      <td>Ron Mercer</td>
-      <td>BOS</td>
-      <td>-4.3</td>
-      <td>...</td>
-      <td>1.175000</td>
-      <td>8.0</td>
-      <td>0.081800</td>
-      <td>0.094540</td>
-      <td>0.069883</td>
-      <td>0.542373</td>
-      <td>0.457627</td>
-      <td>0.083256</td>
-      <td>-0.049256</td>
-      <td>-0.005447</td>
-    </tr>
-    <tr>
-      <th>120</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/t/...</td>
-      <td>-1.0</td>
-      <td>-0.076923</td>
-      <td>21336.0</td>
-      <td>25.9</td>
-      <td>7</td>
-      <td>Tim Thomas</td>
-      <td>PHI</td>
-      <td>5.4</td>
-      <td>...</td>
-      <td>2.707692</td>
-      <td>13.0</td>
-      <td>0.084100</td>
-      <td>0.091640</td>
-      <td>0.087851</td>
-      <td>0.550847</td>
-      <td>0.449153</td>
-      <td>0.089938</td>
-      <td>-0.010938</td>
-      <td>-0.001991</td>
-    </tr>
-    <tr>
-      <th>141</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/f/...</td>
-      <td>-0.8</td>
-      <td>-0.066667</td>
-      <td>13060.0</td>
-      <td>17.8</td>
-      <td>8</td>
-      <td>Adonal Foyle</td>
-      <td>GSW</td>
-      <td>3.9</td>
-      <td>...</td>
-      <td>1.558333</td>
-      <td>12.0</td>
-      <td>0.074550</td>
-      <td>0.088895</td>
-      <td>0.091652</td>
-      <td>0.559322</td>
-      <td>0.440678</td>
-      <td>0.090110</td>
-      <td>-0.021110</td>
-      <td>-0.009861</td>
-    </tr>
-    <tr>
-      <th>161</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/m/...</td>
-      <td>4.6</td>
-      <td>0.306667</td>
-      <td>30658.0</td>
-      <td>32.7</td>
+      <th>166</th>
+      <td>1998</td>
       <td>9</td>
-      <td>Tracy McGrady</td>
-      <td>TOR</td>
-      <td>50.6</td>
-      <td>...</td>
-      <td>6.486667</td>
-      <td>15.0</td>
-      <td>0.109300</td>
-      <td>0.086298</td>
-      <td>0.103962</td>
-      <td>0.567797</td>
-      <td>0.432203</td>
-      <td>0.093933</td>
-      <td>0.058067</td>
-      <td>0.024912</td>
+      <td>Dirk Nowitzki</td>
+      <td>0.129518</td>
     </tr>
     <tr>
-      <th>194</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/f/...</td>
-      <td>-3.0</td>
-      <td>-0.300000</td>
-      <td>8832.0</td>
-      <td>20.1</td>
-      <td>10</td>
-      <td>Danny Fortson</td>
-      <td>DEN</td>
-      <td>-2.1</td>
-      <td>...</td>
-      <td>2.230000</td>
-      <td>10.0</td>
-      <td>0.086500</td>
-      <td>0.083844</td>
-      <td>0.086038</td>
-      <td>0.576271</td>
-      <td>0.423729</td>
-      <td>0.084774</td>
-      <td>0.036226</td>
-      <td>0.007602</td>
+      <th>79</th>
+      <td>2005</td>
+      <td>4</td>
+      <td>Chris Paul</td>
+      <td>0.127442</td>
     </tr>
     <tr>
-      <th>211</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/a/...</td>
-      <td>-3.2</td>
-      <td>-0.533333</td>
-      <td>4807.0</td>
-      <td>20.4</td>
-      <td>11</td>
-      <td>Tariq Abdul-Wahad</td>
-      <td>SAC</td>
-      <td>-1.5</td>
-      <td>...</td>
-      <td>0.583333</td>
-      <td>6.0</td>
-      <td>0.073150</td>
-      <td>0.081527</td>
-      <td>0.071886</td>
-      <td>0.584746</td>
-      <td>0.415254</td>
-      <td>0.077524</td>
-      <td>-0.042524</td>
-      <td>-0.002776</td>
-    </tr>
-    <tr>
-      <th>228</th>
-      <td>1997</td>
-      <td>http://www.basketball-reference.com/players/c/...</td>
-      <td>-0.5</td>
-      <td>-0.041667</td>
-      <td>11480.0</td>
-      <td>17.4</td>
-      <td>12</td>
-      <td>Austin Croshere</td>
-      <td>IND</td>
-      <td>4.3</td>
-      <td>...</td>
-      <td>2.300000</td>
-      <td>12.0</td>
-      <td>0.066300</td>
-      <td>0.079342</td>
-      <td>0.088567</td>
-      <td>0.593220</td>
-      <td>0.406780</td>
-      <td>0.083094</td>
-      <td>0.031906</td>
-      <td>-0.008359</td>
+      <th>40</th>
+      <td>2005</td>
+      <td>3</td>
+      <td>Deron Williams</td>
+      <td>0.126433</td>
     </tr>
   </tbody>
 </table>
-<p>60 rows × 23 columns</p>
 </div>
 </div>
 
@@ -13673,15 +12269,18 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Compare more to what&#39;s next at the top, avg at bottom with sliding scale</span>
+<span class="c1"># 50/50 Avg pick value vs. following pick actual value at #1 pick, 100% avg. pick value at bottom </span>
+<span class="c1"># (solves Isaiah Thomas/Kobe Bryant problem)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sliding Scale&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pk&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">+</span><span class="mi">58</span><span class="p">)</span><span class="o">/</span><span class="mi">118</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sliding Scale2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sliding Scale&#39;</span><span class="p">]</span>
-
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pick Value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Curve_Fit_Pk_WS48&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sliding Scale&#39;</span><span class="p">]</span> <span class="o">+</span>\
                         <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weighted_Following_WS48&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sliding Scale2&#39;</span><span class="p">]</span>
+    
+<span class="c1"># Most valuable picks is now pretty reasonable</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Pick Value&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Pk&#39;</span><span class="p">,</span> <span class="s1">&#39;Pick Value&#39;</span><span class="p">]]</span>
 </pre></div>
 
@@ -13695,12 +12294,12 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:6: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:9: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13715,7 +12314,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
   </thead>
   <tbody>
     <tr>
-      <th>4</th>
+      <th>10</th>
       <td>2007</td>
       <td>1</td>
       <td>0.139331</td>
@@ -13733,91 +12332,91 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.133900</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>12</th>
       <td>2009</td>
       <td>1</td>
       <td>0.130632</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>6</th>
       <td>2005</td>
       <td>1</td>
       <td>0.125450</td>
     </tr>
     <tr>
-      <th>0</th>
+      <th>17</th>
       <td>1996</td>
       <td>1</td>
       <td>0.123308</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>0</th>
       <td>2004</td>
       <td>1</td>
       <td>0.123235</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>18</th>
       <td>2011</td>
       <td>1</td>
       <td>0.123147</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>11</th>
       <td>2012</td>
       <td>1</td>
       <td>0.122613</td>
     </tr>
     <tr>
-      <th>24</th>
+      <th>39</th>
       <td>2007</td>
       <td>2</td>
       <td>0.122387</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>19</th>
       <td>1999</td>
       <td>1</td>
       <td>0.122102</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>16</th>
       <td>2001</td>
       <td>1</td>
       <td>0.119375</td>
     </tr>
     <tr>
-      <th>57</th>
+      <th>40</th>
       <td>2005</td>
       <td>3</td>
       <td>0.114954</td>
     </tr>
     <tr>
-      <th>67</th>
+      <th>77</th>
       <td>2008</td>
       <td>4</td>
       <td>0.114749</td>
     </tr>
     <tr>
-      <th>38</th>
+      <th>20</th>
       <td>2001</td>
       <td>2</td>
       <td>0.114719</td>
     </tr>
     <tr>
-      <th>69</th>
+      <th>79</th>
       <td>2005</td>
       <td>4</td>
       <td>0.113458</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>29</th>
       <td>2005</td>
       <td>2</td>
       <td>0.113383</td>
     </tr>
     <tr>
-      <th>51</th>
+      <th>53</th>
       <td>2003</td>
       <td>3</td>
       <td>0.112454</td>
@@ -13829,85 +12428,85 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.112087</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>2</th>
       <td>2008</td>
       <td>1</td>
       <td>0.111670</td>
     </tr>
     <tr>
-      <th>39</th>
+      <th>32</th>
       <td>1996</td>
       <td>2</td>
       <td>0.110709</td>
     </tr>
     <tr>
-      <th>54</th>
+      <th>51</th>
       <td>2011</td>
       <td>3</td>
       <td>0.109445</td>
     </tr>
     <tr>
-      <th>56</th>
+      <th>41</th>
       <td>2009</td>
       <td>3</td>
       <td>0.109424</td>
     </tr>
     <tr>
-      <th>25</th>
+      <th>34</th>
       <td>2009</td>
       <td>2</td>
       <td>0.108820</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>28</th>
       <td>1997</td>
       <td>2</td>
       <td>0.108295</td>
     </tr>
     <tr>
-      <th>72</th>
+      <th>70</th>
       <td>2003</td>
       <td>4</td>
       <td>0.108074</td>
     </tr>
     <tr>
-      <th>50</th>
+      <th>55</th>
       <td>1998</td>
       <td>3</td>
       <td>0.107517</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>8</th>
       <td>2010</td>
       <td>1</td>
       <td>0.107153</td>
     </tr>
     <tr>
-      <th>58</th>
+      <th>59</th>
       <td>2008</td>
       <td>3</td>
       <td>0.106974</td>
     </tr>
     <tr>
-      <th>44</th>
+      <th>50</th>
       <td>1997</td>
       <td>3</td>
       <td>0.106931</td>
     </tr>
     <tr>
-      <th>35</th>
+      <th>33</th>
       <td>1998</td>
       <td>2</td>
       <td>0.106829</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>37</th>
       <td>2011</td>
       <td>2</td>
       <td>0.105363</td>
     </tr>
     <tr>
-      <th>49</th>
+      <th>43</th>
       <td>2001</td>
       <td>3</td>
       <td>0.105265</td>
@@ -13919,43 +12518,43 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.105063</td>
     </tr>
     <tr>
-      <th>165</th>
+      <th>166</th>
       <td>1998</td>
       <td>9</td>
       <td>0.104978</td>
     </tr>
     <tr>
-      <th>55</th>
+      <th>47</th>
       <td>2007</td>
       <td>3</td>
       <td>0.104961</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>2015</td>
       <td>1</td>
       <td>0.104784</td>
     </tr>
     <tr>
-      <th>59</th>
+      <th>49</th>
       <td>1996</td>
       <td>3</td>
       <td>0.104608</td>
     </tr>
     <tr>
-      <th>34</th>
+      <th>24</th>
       <td>1999</td>
       <td>2</td>
       <td>0.103768</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>9</th>
       <td>1998</td>
       <td>1</td>
       <td>0.103724</td>
     </tr>
     <tr>
-      <th>65</th>
+      <th>68</th>
       <td>1998</td>
       <td>4</td>
       <td>0.103592</td>
@@ -13967,49 +12566,49 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.103273</td>
     </tr>
     <tr>
-      <th>33</th>
+      <th>26</th>
       <td>2003</td>
       <td>2</td>
       <td>0.102503</td>
     </tr>
     <tr>
-      <th>126</th>
+      <th>135</th>
       <td>2009</td>
       <td>7</td>
       <td>0.102159</td>
     </tr>
     <tr>
-      <th>82</th>
+      <th>95</th>
       <td>1998</td>
       <td>5</td>
       <td>0.102051</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>4</th>
       <td>2014</td>
       <td>1</td>
       <td>0.101626</td>
     </tr>
     <tr>
-      <th>79</th>
+      <th>75</th>
       <td>1996</td>
       <td>4</td>
       <td>0.101351</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>5</th>
       <td>2000</td>
       <td>1</td>
       <td>0.101129</td>
     </tr>
     <tr>
-      <th>106</th>
+      <th>107</th>
       <td>1999</td>
       <td>6</td>
       <td>0.100899</td>
     </tr>
     <tr>
-      <th>40</th>
+      <th>52</th>
       <td>2013</td>
       <td>3</td>
       <td>0.100801</td>
@@ -14027,10 +12626,12 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Difference&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WS/48&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pick Value&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Metric is just the WS/48 minus the pick value</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Difference&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WS/48&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pick Value&#39;</span><span class="p">]</span>
+<span class="c1"># Top 50 according to metric</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Difference&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Pk&#39;</span><span class="p">,</span> <span class="s1">&#39;Player&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm&#39;</span><span class="p">,</span> <span class="s1">&#39;Difference&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 
@@ -14044,13 +12645,12 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:2: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
-  from ipykernel import kernelapp as app
+<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:4: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -14067,7 +12667,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
   </thead>
   <tbody>
     <tr>
-      <th>1038</th>
+      <th>1039</th>
       <td>1999</td>
       <td>57</td>
       <td>Manu Ginobili</td>
@@ -14075,7 +12675,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.174532</td>
     </tr>
     <tr>
-      <th>785</th>
+      <th>792</th>
       <td>2014</td>
       <td>41</td>
       <td>Nikola Jokic</td>
@@ -14083,7 +12683,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.157340</td>
     </tr>
     <tr>
-      <th>1078</th>
+      <th>1081</th>
       <td>2011</td>
       <td>60</td>
       <td>Isaiah Thomas</td>
@@ -14091,7 +12691,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.152599</td>
     </tr>
     <tr>
-      <th>638</th>
+      <th>647</th>
       <td>2010</td>
       <td>33</td>
       <td>Hassan Whiteside</td>
@@ -14099,7 +12699,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.147016</td>
     </tr>
     <tr>
-      <th>536</th>
+      <th>534</th>
       <td>2013</td>
       <td>27</td>
       <td>Rudy Gobert</td>
@@ -14107,7 +12707,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.138580</td>
     </tr>
     <tr>
-      <th>69</th>
+      <th>79</th>
       <td>2005</td>
       <td>4</td>
       <td>Chris Paul</td>
@@ -14115,7 +12715,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.136542</td>
     </tr>
     <tr>
-      <th>925</th>
+      <th>926</th>
       <td>2006</td>
       <td>49</td>
       <td>Leon Powe</td>
@@ -14123,7 +12723,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.134271</td>
     </tr>
     <tr>
-      <th>290</th>
+      <th>298</th>
       <td>2011</td>
       <td>15</td>
       <td>Kawhi Leonard</td>
@@ -14131,7 +12731,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.130320</td>
     </tr>
     <tr>
-      <th>1048</th>
+      <th>1046</th>
       <td>2005</td>
       <td>57</td>
       <td>Marcin Gortat</td>
@@ -14139,7 +12739,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.127016</td>
     </tr>
     <tr>
-      <th>883</th>
+      <th>893</th>
       <td>1999</td>
       <td>47</td>
       <td>Todd MacCulloch</td>
@@ -14147,7 +12747,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.124267</td>
     </tr>
     <tr>
-      <th>837</th>
+      <th>847</th>
       <td>2010</td>
       <td>44</td>
       <td>Jerome Jordan</td>
@@ -14155,7 +12755,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.123875</td>
     </tr>
     <tr>
-      <th>1010</th>
+      <th>1015</th>
       <td>2010</td>
       <td>55</td>
       <td>Jeremy Evans</td>
@@ -14163,7 +12763,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.123690</td>
     </tr>
     <tr>
-      <th>583</th>
+      <th>584</th>
       <td>2011</td>
       <td>30</td>
       <td>Jimmy Butler</td>
@@ -14171,7 +12771,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.122346</td>
     </tr>
     <tr>
-      <th>1028</th>
+      <th>1033</th>
       <td>2005</td>
       <td>56</td>
       <td>Amir Johnson</td>
@@ -14179,7 +12779,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.120394</td>
     </tr>
     <tr>
-      <th>1057</th>
+      <th>1062</th>
       <td>1998</td>
       <td>58</td>
       <td>Maceo Baston</td>
@@ -14187,7 +12787,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.115669</td>
     </tr>
     <tr>
-      <th>903</th>
+      <th>899</th>
       <td>2007</td>
       <td>48</td>
       <td>Marc Gasol</td>
@@ -14203,7 +12803,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.113204</td>
     </tr>
     <tr>
-      <th>541</th>
+      <th>548</th>
       <td>2007</td>
       <td>28</td>
       <td>Tiago Splitter</td>
@@ -14211,7 +12811,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.112660</td>
     </tr>
     <tr>
-      <th>861</th>
+      <th>854</th>
       <td>2014</td>
       <td>45</td>
       <td>Dwight Powell</td>
@@ -14219,7 +12819,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.112337</td>
     </tr>
     <tr>
-      <th>681</th>
+      <th>674</th>
       <td>2008</td>
       <td>35</td>
       <td>DeAndre Jordan</td>
@@ -14227,7 +12827,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.111883</td>
     </tr>
     <tr>
-      <th>895</th>
+      <th>896</th>
       <td>2006</td>
       <td>47</td>
       <td>Paul Millsap</td>
@@ -14235,7 +12835,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.110867</td>
     </tr>
     <tr>
-      <th>614</th>
+      <th>617</th>
       <td>2015</td>
       <td>32</td>
       <td>Montrezl Harrell</td>
@@ -14251,7 +12851,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.105100</td>
     </tr>
     <tr>
-      <th>56</th>
+      <th>41</th>
       <td>2009</td>
       <td>3</td>
       <td>James Harden</td>
@@ -14259,7 +12859,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.102576</td>
     </tr>
     <tr>
-      <th>1019</th>
+      <th>1017</th>
       <td>2009</td>
       <td>55</td>
       <td>Patrick Mills</td>
@@ -14267,7 +12867,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.102136</td>
     </tr>
     <tr>
-      <th>126</th>
+      <th>135</th>
       <td>2009</td>
       <td>7</td>
       <td>Stephen Curry</td>
@@ -14275,7 +12875,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.100841</td>
     </tr>
     <tr>
-      <th>480</th>
+      <th>493</th>
       <td>2014</td>
       <td>25</td>
       <td>Clint Capela</td>
@@ -14283,7 +12883,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.100657</td>
     </tr>
     <tr>
-      <th>24</th>
+      <th>39</th>
       <td>2007</td>
       <td>2</td>
       <td>Kevin Durant</td>
@@ -14291,7 +12891,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.096613</td>
     </tr>
     <tr>
-      <th>581</th>
+      <th>580</th>
       <td>2004</td>
       <td>30</td>
       <td>Anderson Varejao</td>
@@ -14299,7 +12899,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.095360</td>
     </tr>
     <tr>
-      <th>582</th>
+      <th>589</th>
       <td>2015</td>
       <td>30</td>
       <td>Kevon Looney</td>
@@ -14307,7 +12907,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.095246</td>
     </tr>
     <tr>
-      <th>864</th>
+      <th>856</th>
       <td>2003</td>
       <td>45</td>
       <td>Matt Bonner</td>
@@ -14315,7 +12915,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.093190</td>
     </tr>
     <tr>
-      <th>192</th>
+      <th>189</th>
       <td>2005</td>
       <td>10</td>
       <td>Andrew Bynum</td>
@@ -14323,7 +12923,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.093175</td>
     </tr>
     <tr>
-      <th>165</th>
+      <th>166</th>
       <td>1998</td>
       <td>9</td>
       <td>Dirk Nowitzki</td>
@@ -14339,7 +12939,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.092449</td>
     </tr>
     <tr>
-      <th>1036</th>
+      <th>1022</th>
       <td>2002</td>
       <td>56</td>
       <td>Luis Scola</td>
@@ -14347,7 +12947,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.091685</td>
     </tr>
     <tr>
-      <th>677</th>
+      <th>686</th>
       <td>2012</td>
       <td>35</td>
       <td>Draymond Green</td>
@@ -14355,7 +12955,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.091641</td>
     </tr>
     <tr>
-      <th>659</th>
+      <th>666</th>
       <td>2007</td>
       <td>34</td>
       <td>Nick Fazekas</td>
@@ -14371,7 +12971,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.089274</td>
     </tr>
     <tr>
-      <th>464</th>
+      <th>472</th>
       <td>2006</td>
       <td>24</td>
       <td>Kyle Lowry</td>
@@ -14379,7 +12979,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.088786</td>
     </tr>
     <tr>
-      <th>734</th>
+      <th>744</th>
       <td>2001</td>
       <td>38</td>
       <td>Mehmet Okur</td>
@@ -14387,7 +12987,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.088693</td>
     </tr>
     <tr>
-      <th>460</th>
+      <th>469</th>
       <td>1999</td>
       <td>24</td>
       <td>Andrei Kirilenko</td>
@@ -14395,7 +12995,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.088687</td>
     </tr>
     <tr>
-      <th>610</th>
+      <th>605</th>
       <td>2007</td>
       <td>31</td>
       <td>Carl Landry</td>
@@ -14403,7 +13003,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.088131</td>
     </tr>
     <tr>
-      <th>676</th>
+      <th>675</th>
       <td>2002</td>
       <td>35</td>
       <td>Carlos Boozer</td>
@@ -14419,7 +13019,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.087913</td>
     </tr>
     <tr>
-      <th>815</th>
+      <th>811</th>
       <td>2011</td>
       <td>42</td>
       <td>Davis Bertans</td>
@@ -14427,7 +13027,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.086727</td>
     </tr>
     <tr>
-      <th>591</th>
+      <th>579</th>
       <td>2005</td>
       <td>30</td>
       <td>David Lee</td>
@@ -14435,7 +13035,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.086629</td>
     </tr>
     <tr>
-      <th>363</th>
+      <th>378</th>
       <td>1997</td>
       <td>19</td>
       <td>Scot Pollard</td>
@@ -14443,7 +13043,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.086492</td>
     </tr>
     <tr>
-      <th>511</th>
+      <th>516</th>
       <td>2008</td>
       <td>26</td>
       <td>George Hill</td>
@@ -14451,7 +13051,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.084106</td>
     </tr>
     <tr>
-      <th>830</th>
+      <th>832</th>
       <td>2000</td>
       <td>43</td>
       <td>Michael Redd</td>
@@ -14459,7 +13059,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>0.084089</td>
     </tr>
     <tr>
-      <th>547</th>
+      <th>550</th>
       <td>2001</td>
       <td>28</td>
       <td>Tony Parker</td>
@@ -14479,10 +13079,11 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Difference&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Pk&#39;</span><span class="p">,</span> <span class="s1">&#39;Player&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm&#39;</span><span class="p">,</span> <span class="s1">&#39;Difference&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Bottom 50</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Difference&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Pk&#39;</span><span class="p">,</span> <span class="s1">&#39;Player&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm&#39;</span><span class="p">,</span> <span class="s1">&#39;Difference&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14495,13 +13096,13 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:1: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
-  if __name__ == &#39;__main__&#39;:
+<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:2: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  from ipykernel import kernelapp as app
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -14518,7 +13119,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
   </thead>
   <tbody>
     <tr>
-      <th>389</th>
+      <th>383</th>
       <td>2014</td>
       <td>20</td>
       <td>Bruno Caboclo</td>
@@ -14526,7 +13127,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.062560</td>
     </tr>
     <tr>
-      <th>186</th>
+      <th>180</th>
       <td>2004</td>
       <td>10</td>
       <td>Luke Jackson</td>
@@ -14542,7 +13143,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.064019</td>
     </tr>
     <tr>
-      <th>99</th>
+      <th>87</th>
       <td>2015</td>
       <td>5</td>
       <td>Mario Hezonja</td>
@@ -14550,7 +13151,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.064416</td>
     </tr>
     <tr>
-      <th>878</th>
+      <th>868</th>
       <td>2004</td>
       <td>46</td>
       <td>Ha Seung-Jin</td>
@@ -14558,7 +13159,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.064446</td>
     </tr>
     <tr>
-      <th>236</th>
+      <th>235</th>
       <td>2010</td>
       <td>12</td>
       <td>Xavier Henry</td>
@@ -14566,7 +13167,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.064492</td>
     </tr>
     <tr>
-      <th>222</th>
+      <th>229</th>
       <td>1999</td>
       <td>12</td>
       <td>Aleksandar Radojevic</td>
@@ -14574,7 +13175,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.064647</td>
     </tr>
     <tr>
-      <th>308</th>
+      <th>302</th>
       <td>2012</td>
       <td>16</td>
       <td>Royce White</td>
@@ -14582,7 +13183,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.067519</td>
     </tr>
     <tr>
-      <th>649</th>
+      <th>645</th>
       <td>2004</td>
       <td>33</td>
       <td>Lionel Chalmers</td>
@@ -14590,7 +13191,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.067984</td>
     </tr>
     <tr>
-      <th>587</th>
+      <th>583</th>
       <td>2009</td>
       <td>30</td>
       <td>Christian Eyenga</td>
@@ -14598,7 +13199,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.070644</td>
     </tr>
     <tr>
-      <th>203</th>
+      <th>211</th>
       <td>2009</td>
       <td>11</td>
       <td>Terrence Williams</td>
@@ -14606,7 +13207,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.071859</td>
     </tr>
     <tr>
-      <th>752</th>
+      <th>760</th>
       <td>2000</td>
       <td>39</td>
       <td>Lavor Postell</td>
@@ -14614,7 +13215,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.071912</td>
     </tr>
     <tr>
-      <th>671</th>
+      <th>654</th>
       <td>2015</td>
       <td>34</td>
       <td>Anthony Brown</td>
@@ -14622,7 +13223,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.072584</td>
     </tr>
     <tr>
-      <th>980</th>
+      <th>983</th>
       <td>2004</td>
       <td>53</td>
       <td>Matt Freije</td>
@@ -14630,7 +13231,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.073864</td>
     </tr>
     <tr>
-      <th>550</th>
+      <th>543</th>
       <td>1998</td>
       <td>28</td>
       <td>Corey Benjamin</td>
@@ -14638,7 +13239,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.075027</td>
     </tr>
     <tr>
-      <th>492</th>
+      <th>481</th>
       <td>2012</td>
       <td>25</td>
       <td>Tony Wroten</td>
@@ -14646,7 +13247,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.075612</td>
     </tr>
     <tr>
-      <th>997</th>
+      <th>1007</th>
       <td>2001</td>
       <td>54</td>
       <td>Kenny Satterfield</td>
@@ -14654,7 +13255,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.076242</td>
     </tr>
     <tr>
-      <th>360</th>
+      <th>374</th>
       <td>2002</td>
       <td>19</td>
       <td>Ryan Humphrey</td>
@@ -14670,7 +13271,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.078800</td>
     </tr>
     <tr>
-      <th>530</th>
+      <th>525</th>
       <td>2002</td>
       <td>27</td>
       <td>Chris Jefferies</td>
@@ -14678,7 +13279,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.079246</td>
     </tr>
     <tr>
-      <th>661</th>
+      <th>659</th>
       <td>2014</td>
       <td>34</td>
       <td>Cleanthony Early</td>
@@ -14686,7 +13287,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.079438</td>
     </tr>
     <tr>
-      <th>565</th>
+      <th>575</th>
       <td>2006</td>
       <td>29</td>
       <td>Mardy Collins</td>
@@ -14694,7 +13295,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.080379</td>
     </tr>
     <tr>
-      <th>294</th>
+      <th>292</th>
       <td>2014</td>
       <td>15</td>
       <td>Adreian Payne</td>
@@ -14702,7 +13303,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.080576</td>
     </tr>
     <tr>
-      <th>273</th>
+      <th>270</th>
       <td>2000</td>
       <td>14</td>
       <td>Mateen Cleaves</td>
@@ -14710,7 +13311,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.082500</td>
     </tr>
     <tr>
-      <th>155</th>
+      <th>148</th>
       <td>2004</td>
       <td>8</td>
       <td>Rafael Araujo</td>
@@ -14718,7 +13319,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.084175</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>7</th>
       <td>2013</td>
       <td>1</td>
       <td>Anthony Bennett</td>
@@ -14734,7 +13335,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.086080</td>
     </tr>
     <tr>
-      <th>455</th>
+      <th>446</th>
       <td>2004</td>
       <td>23</td>
       <td>Sergei Monia</td>
@@ -14742,7 +13343,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.086149</td>
     </tr>
     <tr>
-      <th>122</th>
+      <th>125</th>
       <td>2015</td>
       <td>7</td>
       <td>Emmanuel Mudiay</td>
@@ -14750,7 +13351,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.088971</td>
     </tr>
     <tr>
-      <th>334</th>
+      <th>332</th>
       <td>2015</td>
       <td>17</td>
       <td>Rashad Vaughn</td>
@@ -14758,7 +13359,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.089720</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>9</th>
       <td>1998</td>
       <td>1</td>
       <td>Michael Olowokandi</td>
@@ -14766,7 +13367,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.094724</td>
     </tr>
     <tr>
-      <th>448</th>
+      <th>451</th>
       <td>2001</td>
       <td>23</td>
       <td>Brandon Armstrong</td>
@@ -14774,7 +13375,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.095079</td>
     </tr>
     <tr>
-      <th>271</th>
+      <th>264</th>
       <td>1999</td>
       <td>14</td>
       <td>William Avery</td>
@@ -14782,7 +13383,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.095739</td>
     </tr>
     <tr>
-      <th>563</th>
+      <th>565</th>
       <td>2012</td>
       <td>29</td>
       <td>Marquis Teague</td>
@@ -14790,7 +13391,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.097950</td>
     </tr>
     <tr>
-      <th>478</th>
+      <th>471</th>
       <td>2000</td>
       <td>24</td>
       <td>Dalibor Bagaric</td>
@@ -14798,7 +13399,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.098039</td>
     </tr>
     <tr>
-      <th>52</th>
+      <th>58</th>
       <td>2006</td>
       <td>3</td>
       <td>Adam Morrison</td>
@@ -14806,7 +13407,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.100036</td>
     </tr>
     <tr>
-      <th>298</th>
+      <th>293</th>
       <td>2003</td>
       <td>15</td>
       <td>Reece Gaines</td>
@@ -14814,7 +13415,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.100225</td>
     </tr>
     <tr>
-      <th>109</th>
+      <th>115</th>
       <td>2009</td>
       <td>6</td>
       <td>Jonny Flynn</td>
@@ -14822,7 +13423,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.101408</td>
     </tr>
     <tr>
-      <th>673</th>
+      <th>687</th>
       <td>1998</td>
       <td>35</td>
       <td>Bruno Sundov</td>
@@ -14830,7 +13431,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.101992</td>
     </tr>
     <tr>
-      <th>475</th>
+      <th>462</th>
       <td>1997</td>
       <td>24</td>
       <td>Rodrick Rhodes</td>
@@ -14838,7 +13439,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.108271</td>
     </tr>
     <tr>
-      <th>93</th>
+      <th>85</th>
       <td>2002</td>
       <td>5</td>
       <td>Nikoloz Tskitishvili</td>
@@ -14846,7 +13447,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.109971</td>
     </tr>
     <tr>
-      <th>415</th>
+      <th>411</th>
       <td>2011</td>
       <td>21</td>
       <td>Nolan Smith</td>
@@ -14854,7 +13455,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.110288</td>
     </tr>
     <tr>
-      <th>542</th>
+      <th>547</th>
       <td>1997</td>
       <td>28</td>
       <td>Keith Booth</td>
@@ -14870,7 +13471,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.121784</td>
     </tr>
     <tr>
-      <th>918</th>
+      <th>931</th>
       <td>1998</td>
       <td>49</td>
       <td>Cory Carr</td>
@@ -14878,7 +13479,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.123306</td>
     </tr>
     <tr>
-      <th>784</th>
+      <th>787</th>
       <td>2012</td>
       <td>41</td>
       <td>Tyshawn Taylor</td>
@@ -14886,7 +13487,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.127306</td>
     </tr>
     <tr>
-      <th>557</th>
+      <th>553</th>
       <td>2006</td>
       <td>28</td>
       <td>Maurice Ager</td>
@@ -14894,7 +13495,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.131408</td>
     </tr>
     <tr>
-      <th>819</th>
+      <th>818</th>
       <td>2013</td>
       <td>43</td>
       <td>Ricky Ledo</td>
@@ -14902,7 +13503,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.135228</td>
     </tr>
     <tr>
-      <th>710</th>
+      <th>723</th>
       <td>2001</td>
       <td>37</td>
       <td>Damone Brown</td>
@@ -14910,7 +13511,7 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
       <td>-0.144402</td>
     </tr>
     <tr>
-      <th>915</th>
+      <th>916</th>
       <td>2011</td>
       <td>49</td>
       <td>Josh Selby</td>
@@ -14930,10 +13531,11 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df_TM</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Tm&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Add up for each team since 1996</span>
+<span class="n">df_TM</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Tm&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">df_TM</span> <span class="o">=</span> <span class="n">df_TM</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Difference&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)[[</span><span class="s1">&#39;Difference&#39;</span><span class="p">]]</span>
 <span class="n">df_TM</span>
 </pre></div>
@@ -14948,13 +13550,13 @@ XkREJGYU3EVERGJGwV1ERCRmFNxFRERiRsFdREQkZhTcRUREYkbBXUREJGYU3EVERGLm/wcLakHN
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:2: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
-  from ipykernel import kernelapp as app
+<pre>C:\Users\Matt\AppData\Local\Continuum\Anaconda2\lib\site-packages\ipykernel\__main__.py:3: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  app.launch_new_instance()
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
