@@ -2,5 +2,5 @@
 
 Work in-progress: Metrics for comparing NBA teams
 
-![team_df](https://github.com/mattignal/NBADraftTeamComparison/blob/master/team_df2.png)
+![team_df](https://github.com/mattignal/NBADraftTeamComparison/blob/master/team_df3.png)
 
