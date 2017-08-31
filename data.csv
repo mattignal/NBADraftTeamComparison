@@ -1,7 +1,7 @@
 ,Url,BPM,BPM_Per_Year,MP,MPG,Pk,Player,Tm,VORP,VORP_Per_Year,WS,WS/48,WS_Per_Year,Year,Yrs
 0,0,0.0,0.0,0.0,0.0,32,Ryan Minor,PHI,0.0,0.0,0.0,0.0,0.0,1996,0.0
 1,http://www.basketball-reference.com/players/a/abdulta01.html,-3.2,-0.533333333333,4807.0,20.4,11,Tariq Abdul-Wahad,SAC,-1.5,0.583333333333,3.5,0.035,0.583333333333,1997,6.0
-2,http://www.basketball-reference.com/players/a/abdursh01.html,0.9,0.075,28882.0,34.8,3,Shareef Abdur-Rahim,VAN,21.1,5.93333333333,71.2,0.118,5.93333333333,1996,12.0
+2,http://www.basketball-reference.com/players/a/abdursh01.html,0.9,0.075,28882.0,34.8,3,Shareef Abdur-Rahim,MEM,21.1,5.93333333333,71.2,0.118,5.93333333333,1996,12.0
 3,http://www.basketball-reference.com/players/a/abrinal01.html,-2.5,-2.5,1055.0,15.5,32,Alex Abrines,OKC,-0.1,2.1,2.1,0.096,2.1,2013,1.0
 4,http://www.basketball-reference.com/players/a/ackeral01.html,-6.9,-3.45,234.0,7.8,60,Alex Acker,DET,-0.3,-0.1,-0.2,-0.043,-0.1,2005,2.0
 5,http://www.basketball-reference.com/players/a/acyqu01.html,-1.6,-0.32,3910.0,15.2,37,Quincy Acy,TOR,0.4,1.56,7.8,0.095,1.56,2012,5.0
@@ -90,7 +90,7 @@
 88,http://www.basketball-reference.com/players/b/bentibe01.html,-26.9,-26.9,10.0,3.3,51,Ben Bentil,DAL,-0.1,-0.1,-0.1,0.0,-0.1,2016,1.0
 89,http://www.basketball-reference.com/players/b/bertada01.html,1.8,1.8,808.0,12.1,42,Davis Bertans,SAS,0.8,2.3,2.3,0.135,2.3,2011,1.0
 90,http://www.basketball-reference.com/players/b/beverpa01.html,1.9,0.38,8290.0,28.5,42,Patrick Beverley,HOU,8.1,3.92,19.6,0.113,3.92,2009,5.0
-91,http://www.basketball-reference.com/players/b/bibbymi01.html,0.5,0.0357142857143,33962.0,33.9,2,Mike Bibby,VAN,21.2,5.22857142857,73.2,0.104,5.22857142857,1998,14.0
+91,http://www.basketball-reference.com/players/b/bibbymi01.html,0.5,0.0357142857143,33962.0,33.9,2,Mike Bibby,MEM,21.2,5.22857142857,73.2,0.104,5.22857142857,1998,14.0
 92,http://www.basketball-reference.com/players/b/biedran01.html,1.1,0.11,11146.0,21.6,11,Andris Biedrins,GSW,8.6,3.07,30.7,0.132,3.07,2004,10.0
 93,http://www.basketball-reference.com/players/b/billuch01.html,2.5,0.147058823529,33008.0,31.6,3,Chauncey Billups,BOS,37.6,7.10588235294,120.8,0.176,7.10588235294,1997,17.0
 94,http://www.basketball-reference.com/players/b/biyombi01.html,-2.1,-0.35,9557.0,21.4,7,Bismack Biyombo,CHA,-0.2,3.0,18.0,0.09,3.0,2011,6.0
@@ -226,7 +226,7 @@
 224,http://www.basketball-reference.com/players/d/dalemsa01.html,-0.7,-0.0538461538462,21646.0,24.4,26,Samuel Dalembert,PHI,7.2,3.94615384615,51.3,0.114,3.94615384615,2001,13.0
 225,http://www.basketball-reference.com/players/d/dampier01.html,0.2,0.0125,24003.0,24.3,10,Erick Dampier,IND,13.1,3.29375,52.7,0.105,3.29375,1996,16.0
 226,http://www.basketball-reference.com/players/d/dangune01.html,0.0,0.0,0.0,0.0,54,Nemanja Dangubic,PHI,0.0,0.0,0.0,0.0,0.0,2014,0.0
-227,http://www.basketball-reference.com/players/d/daniean01.html,-1.2,-0.0923076923077,19671.0,22.6,4,Antonio Daniels,VAN,4.1,3.61538461538,47.0,0.115,3.61538461538,1997,13.0
+227,http://www.basketball-reference.com/players/d/daniean01.html,-1.2,-0.0923076923077,19671.0,22.6,4,Antonio Daniels,MEM,4.1,3.61538461538,47.0,0.115,3.61538461538,1997,13.0
 228,http://www.basketball-reference.com/players/d/daniede01.html,0.0,0.0,0.0,0.0,37,DeAndre Daniels,TOR,0.0,0.0,0.0,0.0,0.0,2014,0.0
 229,http://www.basketball-reference.com/players/d/davidje01.html,-7.6,-3.8,433.0,8.3,36,Jermareo Davidson,CHA,-0.6,0.0,0.0,0.0,0.0,2007,2.0
 230,http://www.basketball-reference.com/players/d/davisan02.html,4.1,0.82,11531.0,34.4,1,Anthony Davis,NOP,17.7,9.76,48.8,0.203,9.76,2012,5.0
@@ -283,7 +283,7 @@
 281,http://www.basketball-reference.com/players/e/ebankde01.html,-4.7,-1.56666666667,711.0,11.3,43,Devin Ebanks,LAL,-0.5,0.166666666667,0.5,0.035,0.166666666667,2010,3.0
 282,http://www.basketball-reference.com/players/e/ebind01.html,-5.4,-2.7,86.0,4.5,26,Ndudi Ebi,MIN,-0.1,0.05,0.1,0.0,0.05,2003,2.0
 283,http://www.basketball-reference.com/players/e/edwarco01.html,-5.2,-5.2,110.0,11.0,58,Corsley Edwards,NOP,-0.1,0.1,0.1,0.0,0.1,2002,1.0
-284,http://www.basketball-reference.com/players/e/ekeziob01.html,-6.1,-1.525,1516.0,10.6,37,Obinna Ekezie,VAN,-1.5,0.425,1.7,0.054,0.425,1999,4.0
+284,http://www.basketball-reference.com/players/e/ekeziob01.html,-6.1,-1.525,1516.0,10.6,37,Obinna Ekezie,MEM,-1.5,0.425,1.7,0.054,0.425,1999,4.0
 285,http://www.basketball-reference.com/players/e/elamikh01.html,-3.8,-3.8,936.0,18.7,34,Khalid El-Amin,CHI,-0.4,0.6,0.6,0.03,0.6,2000,1.0
 286,http://www.basketball-reference.com/players/e/eliyali01.html,0.0,0.0,0.0,0.0,44,Lior Eliyahu,ORL,0.0,0.0,0.0,0.0,0.0,2006,0.0
 287,http://www.basketball-reference.com/players/e/ellenhe01.html,-8.2,-8.2,146.0,7.7,18,Henry Ellenson,DET,-0.2,-0.2,-0.2,0.0,-0.2,2016,1.0
@@ -437,7 +437,7 @@
 435,http://www.basketball-reference.com/players/h/headlu01.html,-0.4,-0.0666666666667,7797.0,22.4,24,Luther Head,HOU,3.2,2.45,14.7,0.09,2.45,2005,6.0
 436,http://www.basketball-reference.com/players/h/hendece02.html,-2.4,-0.48,6182.0,23.8,44,Cedric Henderson,CLE,-0.7,0.66,3.3,0.026,0.66,1997,5.0
 437,http://www.basketball-reference.com/players/h/hendege02.html,-2.2,-0.275,13854.0,25.9,12,Gerald Henderson,CHA,-0.9,2.2875,18.3,0.063,2.2875,2009,8.0
-438,http://www.basketball-reference.com/players/h/hendejr01.html,-6.1,-6.1,331.0,11.0,56,J.R. Henderson,VAN,-0.3,-0.2,-0.2,-0.025,-0.2,1998,1.0
+438,http://www.basketball-reference.com/players/h/hendejr01.html,-6.1,-6.1,331.0,11.0,56,J.R. Henderson,MEM,-0.3,-0.2,-0.2,-0.025,-0.2,1998,1.0
 439,http://www.basketball-reference.com/players/h/hendrma01.html,-4.1,-1.025,1508.0,13.2,31,Mark Hendrickson,PHI,-0.8,0.525,2.1,0.067,0.525,1996,4.0
 440,http://www.basketball-reference.com/players/h/henryxa01.html,-5.1,-1.02,2905.0,15.7,12,Xavier Henry,MEM,-2.3,0.16,0.8,0.013,0.16,2010,5.0
 441,http://www.basketball-reference.com/players/h/hensojo01.html,0.5,0.1,5994.0,19.0,14,John Henson,MIL,3.8,2.76,13.8,0.111,2.76,2012,5.0
@@ -626,7 +626,7 @@
 624,http://www.basketball-reference.com/players/l/llullse01.html,0.0,0.0,0.0,0.0,34,Sergio Llull,DEN,0.0,0.0,0.0,0.0,0.0,2009,0.0
 625,http://www.basketball-reference.com/players/l/looneke01.html,0.0,0.0,468.0,8.1,30,Kevon Looney,GSW,0.2,0.75,1.5,0.157,0.75,2015,2.0
 626,http://www.basketball-reference.com/players/l/lopezbr01.html,0.9,0.1,18118.0,32.2,10,Brook Lopez,BRK,13.2,5.51111111111,49.6,0.131,5.51111111111,2008,9.0
-627,http://www.basketball-reference.com/players/l/lopezfe01.html,-2.7,-0.675,4145.0,16.6,24,Felipe Lopez,VAN,-0.7,0.775,3.1,0.036,0.775,1998,4.0
+627,http://www.basketball-reference.com/players/l/lopezfe01.html,-2.7,-0.675,4145.0,16.6,24,Felipe Lopez,MEM,-0.7,0.775,3.1,0.036,0.775,1998,4.0
 628,http://www.basketball-reference.com/players/l/lopezra01.html,-3.5,-1.75,2135.0,18.9,24,Raul Lopez,UTA,-0.8,1.05,2.1,0.047,1.05,2001,2.0
 629,http://www.basketball-reference.com/players/l/lopezro01.html,0.5,0.0555555555556,14353.0,22.9,15,Robin Lopez,PHO,8.9,4.25555555556,38.3,0.128,4.25555555556,2008,9.0
 630,http://www.basketball-reference.com/players/l/lorbeer01.html,0.0,0.0,0.0,0.0,46,Erazem Lorbek,IND,0.0,0.0,0.0,0.0,0.0,2005,0.0
@@ -757,7 +757,7 @@
 755,http://www.basketball-reference.com/players/n/noguelu01.html,4.7,1.56666666667,1336.0,14.5,16,Lucas Nogueira,TOR,2.3,1.46666666667,4.4,0.158,1.46666666667,2013,3.0
 756,http://www.basketball-reference.com/players/n/nordgje01.html,-6.8,-6.8,48.0,3.7,53,Jeff Nordgaard,MIL,-0.1,0.0,0.0,0.0,0.0,1996,1.0
 757,http://www.basketball-reference.com/players/n/norelhe01.html,0.0,0.0,0.0,0.0,47,Henk Norel,MIN,0.0,0.0,0.0,0.0,0.0,2009,0.0
-758,http://www.basketball-reference.com/players/n/norrimo01.html,-2.1,-0.233333333333,7640.0,17.2,33,Moochie Norris,VAN,-0.1,1.11111111111,10.0,0.063,1.11111111111,1996,9.0
+758,http://www.basketball-reference.com/players/n/norrimo01.html,-2.1,-0.233333333333,7640.0,17.2,33,Moochie Norris,MEM,-0.1,1.11111111111,10.0,0.063,1.11111111111,1996,9.0
 759,http://www.basketball-reference.com/players/n/novakst01.html,-0.9,-0.0818181818182,5657.0,12.1,32,Steve Novak,HOU,1.6,1.31818181818,14.5,0.123,1.31818181818,2006,11.0
 760,http://www.basketball-reference.com/players/n/nowitdi01.html,3.4,0.178947368421,48673.0,34.9,9,Dirk Nowitzki,DAL,66.0,10.5947368421,201.3,0.198,10.5947368421,1998,19.0
 761,http://www.basketball-reference.com/players/n/nurkiju01.html,-0.5,-0.166666666667,3041.0,19.1,16,Jusuf Nurkic,DEN,1.1,1.3,3.9,0.062,1.3,2014,3.0
@@ -869,12 +869,12 @@
 867,http://www.basketball-reference.com/players/r/roberla01.html,-1.4,-0.7,1150.0,13.2,55,Lawrence Roberts,MEM,0.2,1.25,2.5,0.106,1.25,2005,2.0
 868,http://www.basketball-reference.com/players/r/roberry01.html,-8.4,-8.4,25.0,25.0,45,Ryan Robertson,SAC,0.0,0.0,0.0,0.0,0.0,1999,1.0
 869,http://www.basketball-reference.com/players/r/robinbe01.html,-2.0,-0.666666666667,1909.0,14.9,45,Bernard Robinson,CHA,0.0,0.666666666667,2.0,0.049,0.666666666667,2004,3.0
-870,http://www.basketball-reference.com/players/r/robinch01.html,-4.1,-2.05,1095.0,14.4,51,Chris Robinson,VAN,-0.6,-0.05,-0.1,-0.003,-0.05,1996,2.0
+870,http://www.basketball-reference.com/players/r/robinch01.html,-4.1,-2.05,1095.0,14.4,51,Chris Robinson,MEM,-0.6,-0.05,-0.1,-0.003,-0.05,1996,2.0
 871,http://www.basketball-reference.com/players/r/robingl02.html,-2.3,-0.766666666667,2196.0,14.7,40,Glenn Robinson III,MIN,-0.2,1.13333333333,3.4,0.075,1.13333333333,2014,3.0
 872,http://www.basketball-reference.com/players/r/robinna01.html,0.2,0.0181818181818,13878.0,22.5,21,Nate Robinson,NYK,7.8,2.52727272727,27.8,0.096,2.52727272727,2005,11.0
 873,http://www.basketball-reference.com/players/r/robinth01.html,-3.2,-0.64,4204.0,13.4,5,Thomas Robinson,SAC,-1.3,0.92,4.6,0.053,0.92,2012,5.0
 874,http://www.basketball-reference.com/players/r/rodrise01.html,-3.2,-0.64,5281.0,15.0,27,Sergio Rodriguez,POR,-1.6,0.86,4.3,0.039,0.86,2006,5.0
-875,http://www.basketball-reference.com/players/r/rogerro02.html,-3.3,-1.1,2309.0,16.9,22,Roy Rogers,VAN,-0.7,0.566666666667,1.7,0.035,0.566666666667,1996,3.0
+875,http://www.basketball-reference.com/players/r/rogerro02.html,-3.3,-1.1,2309.0,16.9,22,Roy Rogers,MEM,-0.7,0.566666666667,1.7,0.035,0.566666666667,1996,3.0
 876,http://www.basketball-reference.com/players/r/rondora01.html,1.8,0.163636363636,23045.0,32.3,21,Rajon Rondo,BOS,22.0,4.86363636364,53.5,0.111,4.86363636364,2006,11.0
 877,http://www.basketball-reference.com/players/r/rosede01.html,0.6,0.075,16292.0,34.7,1,Derrick Rose,CHI,10.6,4.3,34.4,0.101,4.3,2008,8.0
 878,http://www.basketball-reference.com/players/r/rosema01.html,-1.4,-0.107692307692,13404.0,16.5,44,Malik Rose,CHA,1.9,2.03846153846,26.5,0.095,2.03846153846,1996,13.0
@@ -971,7 +971,7 @@
 969,http://www.basketball-reference.com/players/s/sundobr01.html,-9.7,-1.38571428571,524.0,5.1,35,Bruno Sundov,DAL,-1.0,-0.1,-0.7,-0.062,-0.1,1998,7.0
 970,http://www.basketball-reference.com/players/s/sweetmi01.html,-2.1,-0.525,3610.0,15.5,9,Mike Sweetney,NYK,-0.1,1.95,7.8,0.103,1.95,2003,4.0
 971,http://www.basketball-reference.com/players/s/swiftro01.html,-4.1,-1.025,1500.0,15.5,12,Robert Swift,OKC,-0.8,0.425,1.7,0.054,0.425,2004,4.0
-972,http://www.basketball-reference.com/players/s/swiftst01.html,-1.9,-0.211111111111,10804.0,19.8,2,Stromile Swift,VAN,0.2,2.36666666667,21.3,0.095,2.36666666667,2000,9.0
+972,http://www.basketball-reference.com/players/s/swiftst01.html,-1.9,-0.211111111111,10804.0,19.8,2,Stromile Swift,MEM,0.2,2.36666666667,21.3,0.095,2.36666666667,2000,9.0
 973,http://www.basketball-reference.com/players/s/sypa01.html,-6.0,-6.0,21.0,7.0,53,Pape Sy,ATL,0.0,0.0,0.0,0.0,0.0,2010,1.0
 974,http://www.basketball-reference.com/players/s/szczewa02.html,0.5,0.05,20052.0,30.8,6,Wally Szczerbiak,MIN,12.8,5.33,53.3,0.127,5.33,1999,10.0
 975,http://www.basketball-reference.com/players/s/szewcsz01.html,0.0,0.0,0.0,0.0,35,Szymon Szewczyk,MIL,0.0,0.0,0.0,0.0,0.0,2003,0.0
