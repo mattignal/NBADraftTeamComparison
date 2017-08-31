@@ -1,6 +1,7 @@
 # Import libraries
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import StandardScaler
 
 
 def sorted_value(df, metric):
@@ -26,8 +27,9 @@ def sorted_value(df, metric):
 
     # Calculate the difference once more
     df['Adj_Difference'] = df['Difference'] - df['Line_Fit_Pk_Difference']
-    sv = pd.DataFrame(df.groupby('Tm').mean()['Difference'])
-    sv.rename(columns={'Difference': 'Sorted Value {}'.format(metric)},
+    df['Adj_Difference'] = StandardScaler().fit_transform(df['Adj_Difference'])
+    sv = pd.DataFrame(df.groupby('Tm').mean()['Adj_Difference'])
+    sv.rename(columns={'Adj_Difference': 'Sorted Value {}'.format(metric)},
               inplace=True)
     return sv
 
@@ -86,6 +88,7 @@ def pick_value(df, metric, beg_year, end_year):
 
     # Metric is just the WS/48 minus the pick value
     df['Difference'] = df['{}'.format(metric)] - df['Pick Value']
+    df['Difference'] = StandardScaler().fit_transform(df['Difference'])
     pv = pd.DataFrame(df.groupby('Tm').mean()['Difference'])
     pv.rename(columns={'Difference':'Pick Value {}'.format(metric)},
               inplace=True)
