@@ -4,6 +4,32 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 
+def expected_value(df, metric):
+    df['Avg_Pk'] = df.groupby('Pk')['{}'.format(metric)].transform(lambda x:
+                                                              x.mean())
+
+    # Curve fitting seems to do the trick, although I'd like to keep
+    # pick #1 without the curve fit
+    X = df['Pk']
+    Y = df['Avg_Pk']
+    z = np.polyfit(X, Y, 3)
+    f = np.poly1d(z)
+    df = df.sort_values('Pk')
+    x = df['Pk']
+
+    # Apply curve fit
+    df['Curve_Fit_Pk'] = f[3] * (x ** 3) + f[2] * (x ** 2) + f[1] * x + \
+                              f[0]
+    # Replace #1 suggested by curve fir with simple average #1 pick
+    df.loc[df.Pk == 1, ['Curve_Fit_Pk']] = df['Avg_Pk']
+    df['Difference'] = df['{}'.format(metric)] - df['Curve_Fit_Pk']
+    df['Difference'] = StandardScaler().fit_transform(df['Difference'])
+    ev = pd.DataFrame(df.groupby('Tm').mean()['Difference'])
+    ev.rename(columns={'Difference': 'Expected Value {}'.format(metric)},
+              inplace=True)
+    return ev
+
+
 def sorted_value(df, metric):
     df = df.sort_values(['Year', '{}'.format(metric)], ascending=[True, False])
     metric_sorted = list(df['{}'.format(metric)])
@@ -39,7 +65,8 @@ def pick_value(df, metric, beg_year, end_year):
     df['Avg_Pk'] = df.groupby('Pk')['{}'.format(metric)].\
         transform(lambda x: x.mean())
 
-    # Curve fitting seems to do the trick, although I'd like to keep pick #1 without the curve fit
+    # Curve fitting seems to do the trick, although I'd like to keep pick #1
+    # without the curve fit
     X = df['Pk']
     Y = df['Avg_Pk']
     z = np.polyfit(X, Y, 3)
@@ -69,7 +96,8 @@ def pick_value(df, metric, beg_year, end_year):
 
     df = df.reset_index().sort_values(['Year', 'Pk'])
 
-    # Sequence for weighing pick value. The selection is worth 1, the next pick is worth 0.75, etc.
+    # Sequence for weighing pick value. The selection is worth 1, the next pick
+    # is worth 0.75, etc.
     simple_transform = [
         [1, 0.75, 0.55, 0.40, 0.25, 0.15, 0.10, 0.07, 0.05, 0.04, 0.03, 0.02,
          0.01] for i in range(len(df))]
@@ -79,7 +107,8 @@ def pick_value(df, metric, beg_year, end_year):
         [y * simple_transform[xi][yi]/sum(simple_transform[0]) for yi, y in
          enumerate(x)]) for xi, x in enumerate(cum_list)]
     # Compare more to what's next at the top, avg at bottom with sliding scale
-    # 50/50 Avg pick value vs. following pick actual value at #1 pick, 100% avg. pick value at bottom
+    # 50/50 Avg pick value vs. following pick actual value at #1 pick, 100% avg.
+    #  pick value at bottom
     # (solves Isaiah Thomas/Kobe Bryant problem)
     df['Sliding Scale'] = (df['Pk'].astype(float) + 58) / 118
     df['Sliding Scale2'] = 1 - df['Sliding Scale']
