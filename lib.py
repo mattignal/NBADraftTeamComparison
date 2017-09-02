@@ -20,7 +20,7 @@ def expected_value(df, metric):
     # Apply curve fit
     df['Curve_Fit_Pk'] = f[3] * (x ** 3) + f[2] * (x ** 2) + f[1] * x + \
                               f[0]
-    # Replace #1 suggested by curve fir with simple average #1 pick
+    # Replace #1 suggested by curve fit with simple average #1 pick
     df.loc[df.Pk == 1, ['Curve_Fit_Pk']] = df['Avg_Pk']
     df['Difference'] = df['{}'.format(metric)] - df['Curve_Fit_Pk']
     df['Difference'] = StandardScaler().fit_transform(df['Difference'])
@@ -42,7 +42,7 @@ def sorted_value(df, metric):
 
     # Line fitting to account for difference between picks
     X = df['Pk']
-    Y = df['Difference']
+    Y = df['Avg_Pk_Difference']
     z = np.polyfit(X, Y, 1)
     f = np.poly1d(z)
 
@@ -122,3 +122,82 @@ def pick_value(df, metric, beg_year, end_year):
     pv.rename(columns={'Difference':'Pick Value {}'.format(metric)},
               inplace=True)
     return pv
+
+
+def pick_context(df, metric):
+    df['Avg_Pk'] = df.groupby('Pk')['{}'.format(metric)]. \
+        transform(lambda x: x.mean())
+
+    # Curve fitting seems to do the trick, although I'd like to keep pick #1
+    # without the curve fit
+    X = df['Pk']
+    Y = df['Avg_Pk']
+    z = np.polyfit(X, Y, 3)
+    f = np.poly1d(z)
+
+    df = df.sort_values('Pk')
+    x = df['Pk']
+
+    # Apply curve fit
+    df['Curve_Fit_Pk'] = f[3] * (x ** 3) + f[2] * (x ** 2) + f[1] * x + f[0]
+    # Replace #1 suggested by curve fir with simple average #1 pick
+    df.loc[df.Pk == 1, ['Curve_Fit_Pk']] = df['Avg_Pk']
+    df['Draft_Value'] = df.groupby('Year')['{}'.format(metric)].transform(lambda
+                                                                           x:
+        x.sum())
+    df['Pick_Context'] = (df['{}'.format(metric)] * df['Draft_Value']) - df[
+        'Avg_Pk']
+    df['Avg_Pick_Context'] = df.groupby('Pk')['Pick_Context'].transform(
+        lambda x: x.mean())
+    # Line fitting seems to do the trick
+    X = df['Pk']
+    Y = df['Avg_Pick_Context']
+    z = np.polyfit(X, Y, 1)
+    f = np.poly1d(z)
+    # Clearly this needs to be accounted for
+    df = df.sort_values('Pk')
+    x = df['Pk']
+    df['Line_Fit_Pk_Difference'] = f[1] * x + f[0]
+
+    # Calculate the difference once more
+    df['Adj_Pick_Context'] = df['Pick_Context'] - df['Line_Fit_Pk_Difference']
+    pc = pd.DataFrame(df.groupby('Tm').mean()['Adj_Pick_Context'])
+    pc.rename(columns={'Adj_Pick_Context': 'Pick Context {}'.format(metric)},
+              inplace=True)
+    return pc
+
+
+def opportunity_cost(df, metric, beg_year, end_year):
+    df = df.sort_values('Pk')
+    df = df.set_index('Year')
+
+    # Create lists of variables and following
+    lists = df['{}'.format(metric)].groupby(df.index).agg(lambda x: list(list(
+        x)))
+    cum_list = []
+    for i in range(beg_year, end_year):
+        mini_list = []
+        for j in range(len(lists[i])):
+            mini_list.append(lists[i][j + 1:j + 6])
+        cum_list.append(mini_list)
+    cum_list = [item for sublist in cum_list for item in sublist]
+
+    df = df.reset_index().sort_values(['Year', 'Pk'])
+
+    # Sequence for weighing pick value. The selection is worth 1, the next pick is worth 0.75, etc.
+    simple_transform = [[1, .5, float(1) / 3, .25, .2] for i in range(len(df))]
+
+    # Apply sequence
+    df['Weighted_Following_5'] = [sum(
+        [y * simple_transform[xi][yi] / sum(simple_transform[0]) for yi, y in
+         enumerate(x)])
+                                  for xi, x in enumerate(cum_list)]
+    df['Opportunity_Cost'] = (df['{}'.format(metric)] - df[
+        'Weighted_Following_5'])
+    oc = pd.DataFrame(df.groupby('Tm').mean()['Opportunity_Cost'])
+    oc.rename(columns={'Opportunity_Cost': 'Opportunity Cost {}'.format(
+        metric)},
+              inplace=True)
+    return oc
+
+
